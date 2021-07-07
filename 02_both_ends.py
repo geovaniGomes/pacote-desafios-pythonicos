@@ -9,7 +9,34 @@ for menor que 2, retorne uma string vazia.
 
 def both_ends(s):
     # +++ SUA SOLUÇÃO +++
-    return
+    if len(s) < 2:
+        return ""
+    elif len(s) == 3:
+        return s[0:2] + s[1:]
+    else:
+        string_final = ""
+
+        for indice, value in enumerate(s):
+            if indice in [0, 1]:
+                if indice == 0:
+                    string_final += s[0]
+                else:
+                    string_final += s[1]
+
+            elif indice == 2:
+                continue
+            elif (len(s) - indice == 2) or (len(s) - indice == 1):
+                string_final += value
+
+
+        return string_final
+
+
+
+
+
+
+
 
 
 # --- Daqui para baixo são apenas códigos auxiliáries de teste. ---
