@@ -13,7 +13,19 @@ antes de combina-las.
 
 def front_x(words):
     # +++ SUA SOLUÇÃO +++
-    return
+    words.sort(reverse=False)
+    list_values_x = []
+    list_values_not_x = []
+
+    for value in words:
+        primeiro_caracter = value[0]
+        if primeiro_caracter == 'x':
+            list_values_x.append(value)
+        else:
+            list_values_not_x.append(value)
+
+    result = list_values_x + list_values_not_x
+    return result
 
 
 # --- Daqui para baixo são apenas códigos auxiliáries de teste. ---
