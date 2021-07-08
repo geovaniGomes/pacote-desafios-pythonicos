@@ -11,7 +11,19 @@ A sua solução deve rodar em tempo linear, ou seja, deve fazer uma
 
 def linear_merge(list1, list2):
     # +++ SUA SOLUÇÃO +++
-    return
+    lista_final = []
+
+    for lista_1, lista_2 in zip(list1, list2):
+        lista_final.append(lista_1)
+        lista_final.append(lista_2)
+
+    if len(list1) > len(list2):
+        lista_final.append(list1[-1])
+    else:
+        lista_final.append(list2[-1])
+    lista_final.sort()
+
+    return lista_final
 
 
 # --- Daqui para baixo são apenas códigos auxiliáries de teste. ---
@@ -37,7 +49,9 @@ if __name__ == '__main__':
     # Testes que verificam o resultado do seu código em alguns cenários.
     test(linear_merge, (['aa', 'xx', 'zz'], ['bb', 'cc']),
          ['aa', 'bb', 'cc', 'xx', 'zz'])
+
     test(linear_merge, (['aa', 'xx'], ['bb', 'cc', 'zz']),
          ['aa', 'bb', 'cc', 'xx', 'zz'])
     test(linear_merge, (['aa', 'aa'], ['aa', 'bb', 'bb']),
          ['aa', 'aa', 'aa', 'bb', 'bb'])
+
