@@ -52,10 +52,71 @@ e conferindo cada etapa do seu progresso.
 """
 
 import sys
+import re
+import collections
+
 
 
 # +++ SUA SOLUÇÃO +++
 # Defina as funções print_words(filename) e print_top(filename).
+
+def clean_data(filename):
+    words = []
+    arquivo = open(filename, "r")
+    bag_words = []
+    lines = arquivo.readlines()
+    arquivo.close()
+
+
+    for line in lines:
+        string = re.sub(r"\s+", "", line.lower())
+        words.append(string)
+
+    for w in words:
+        tamanho = len(w)
+        i = 0
+        while i < tamanho:
+            bag_words.append(w[i])
+            i += 1
+        i = 0
+    return bag_words
+
+
+def dict_words(words):
+
+    unicas = set(words)
+    dicionario = dict.fromkeys(unicas, 0)
+
+    for i in unicas:
+        count = words.count(i)
+        dicionario[i] = count
+
+    return dicionario
+
+
+def print_words(filename):
+    bag_words = clean_data(filename)
+    dicionario = dict_words(bag_words)
+
+    dict_sorted = dict(sorted(dicionario.items(), key=lambda item: item[1]))
+    for k, v in dict_sorted.items():
+        print(k, v)
+    '''
+    
+    for item in sorted(dicionario, key=dicionario.get):
+        print(item, dicionario[item])
+    '''
+
+
+def print_top(filename):
+    bag_words = clean_data(filename)
+    dicionario = dict_words(bag_words)
+
+    dict_sorted = dict(sorted(dicionario.items(), key=lambda item: item[1], reverse=True))
+    for k, v in dict_sorted.items():
+        print(k, v)
+
+
 
 
 # A função abaixo chama print_words() ou print_top() de acordo com os
